@@ -722,14 +722,48 @@ void PrintEmpByID()
     cout<<"Employee not found"<<endl;
     return ;
 }
-void writeQuery()
+void writeQuery(string query)
 {
+     query=to_lower(query);
+    char ch[13];
+    string q=(query);
+    if(q=="select all employee where dept_id")
+    {
+        cout<<"Enter dept_id ";
+        cin>>ch;
+        Emp_retrive_record(SeachEmployeetByDeptid(ch,0,Emp_no));
+    }
+    else if(q=="select all employee where employee_id")
+    {
+        cout<<"Enter Employee_id ";
+        cin>>ch;
+        Emp_retrive_record(SearchEmployee_By_id(ch,0,Emp_no));
+    }
+    else if(q=="select all department where dept_id")
+    {
+        cout<<"Enter dept_id ";
+        cin>>ch;
+        retrive_record(SearchDepartment(ch,0,Dept_no));
+    }
+    else if(q=="select all department where dept_name")
+    {
+        cout<<"Enter dept_name ";
+        cin>>ch;
+        retrive_record(SeachDepartmentByName(ch,0,Dept_no));
+    }
+    else
+    {
+        cout<<"wrong Query";
+    }
+
 }
+
 
 
 int main()
 {
     int choice;
+    string q;
     do
     {
         cout<<"Main Menu:"<<endl
@@ -789,7 +823,10 @@ int main()
             }
             case 9:
             {
-                writeQuery();
+                
+                cout<<"Enter Query";
+                cin>>q;
+                writeQuery(q);
                 break;
             }
 
